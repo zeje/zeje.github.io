@@ -12,13 +12,9 @@ module.exports = {
         logo:"/img/logo.jpg",
         nav: [
           { text: '首页', link: '/timeLine/' },
-          { text: '技术', link:'/technology/'},
-          { text: '生活',link: '/life/' },
-          { text: '思考',link: '/ponder/'},
-          { text: '标签库', link: '/tags/' },
-          { text: '关于', link:'/about/'},
-          { text: '留言板', link:'/massage/'},
-          
+          { text: '个人简介', link:'/about/'},
+          { text: '工作经验', link:'/work/'},
+          { text: '项目经验',link: '/project/' },
           { text: '链接',
             items: [
                 {text:'博客园',link: 'https://www.cnblogs.com/zeje' },
