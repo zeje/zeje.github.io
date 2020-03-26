@@ -5,9 +5,9 @@
       v-model="isPlay"
       @change="play">
     </el-switch>
-    <audio ref="music" loop> 
+    <!-- <audio ref="music" loop> 
       <source src="../public/mp3/yishengyouni.mp3" type="audio/mpeg">
-    </audio>
+    </audio> -->
   </div>
 </template>
 
