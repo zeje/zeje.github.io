@@ -2,6 +2,10 @@
 
 # yum install nodejs
 
+# 安装 yum
+
+# sudo yum install -y git
+
 # 安装vuepress
 
 # npm install -g vuepress

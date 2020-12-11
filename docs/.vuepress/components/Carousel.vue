@@ -1,8 +1,9 @@
 <template>
-  <el-carousel :interval="2000" type="card" height="300px">
+  <el-carousel :interval="20000" type="card" height="300px">
     <el-carousel-item v-for="item in 3" :key="item" >
       <div style=" text-align: center " @click=" selected(item) ">
-          <h3>{{ title[item] }}</h3>
+        <!--<div class="img2" ></div>-->
+        <h3 class="zeje_bg" :style="{backgroundImage: 'url(' + info[item].url + ')' }">{{ info[item].title }}</h3>
       </div>
     </el-carousel-item>
   </el-carousel>
@@ -26,19 +27,32 @@
    
     background-color: #99a9bf;
   }
+
+  .zeje_bg {
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-size:contain;
+      display: flex;
+      text-align: center;
+  }
 </style>
 
 <script>
 export default {
   data() {
     return {
-      title:['','本博客搭建教程','暂无专题','暂无专题']
+      info:[
+        {title:"",url:""},
+        {title:"扫我",url:"../../img/xyz.png"},
+        {title:"微信",url:"../../img/zeje_wechat.jpg"},
+        {title:"毕业证书",url:"../../img/zeje_byz.jpg"},
+        {title:"学士学位证书",url:"../../img/zeje_xs.jpg"}]
     };
   },
   methods: {
     selected(index) {
       if (index === 1) {
-        window.location.href= './technology/vue/20190601_myblog.html';
+        //window.location.href= './technology/vue/20190601_myblog.html';
       }
     }
   }

@@ -79,15 +79,25 @@
 
   .cardHeader {
     /* background-color:bisque; */
-    height: 50px;
+    height: 64px;
     margin: 10px;
-   
+    vertical-align: middle;
+    display: -webkit-box; /*必须结合的属性 ，将对象作为弹性伸缩盒子模型显示。*/
+    /*-webkit-box-orient 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。*/
+    text-overflow: ellipsis;/*可以用来多行文本的情况下，用省略号“…”隐藏超出范围的文本 。*/
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;  /* 设置文本超出的行数，显示省略号*/
+    -webkit-box-orient: vertical;
   }
   .cardContent {
     padding:10px;
     margin: 10px;
     height: 80px;
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
+
   .cardFooter {
     padding:10px;
     height: 20px;
