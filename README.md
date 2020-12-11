@@ -38,3 +38,58 @@ npm run dev
 ```
 npm run build
 ```
+
+## 部署
+
+### 创建 Nginx Config配置文件
+
+在项目根目录下创建 `nginx` 文件夹，该文件夹下新建文件`default.conf`：
+```
+server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    access_log  /var/log/nginx/host.access.log  main;
+    error_log  /var/log/nginx/error.log  error;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+} 
+```
+
+该配置文件定义了首页的指向为 `/usr/share/nginx/html/index.html`，所以我们可以一会把构建出来的 `index.html` 文件和相关的静态资源放到 `/usr/share/nginx/html` 目录下。
+
+### 创建 Dockerfile 文件
+```
+FROM nginx
+COPY dist/ /usr/share/nginx/html/
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+```
+
+- 自定义构建镜像的时候基于 Dockerfile 来构建。
+- FROM nginx 命令的意思该镜像是基于 nginx:latest 镜像而构建的。
+- COPY dist/ /usr/share/nginx/html/ 命令的意思是将项目根目录下 dist 文件夹下的所有文件复制到镜像中 /usr/share/nginx/html/ 目录下。
+- COPY nginx/default.conf /etc/nginx/conf.d/default.conf 命令的意思是将 Nginx 目录下的 default.conf 复制到 etc/nginx/conf.d/default.conf，用本地的 default.conf 配置来替换 Nginx 镜像里的默认配置。
+
+### 基于该 Dockerfile 构建 Vue 应用镜像
+
+* 将本项目push至github
+* clone仓库至centos7系统
+  * linux系统上安装了git
+  * linux系统上安装了docker
+* 运行命令（注意不要少了最后的 “.” ）
+```
+docker build -t zejevuenginxcontainer .
+```
